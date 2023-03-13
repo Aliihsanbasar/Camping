@@ -1,5 +1,7 @@
 package com.camping.camping.screens.onboarding
 
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
@@ -8,6 +10,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -17,13 +20,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.camping.camping.model.OnBoardingItems
+import com.camping.camping.navigation.CampingNavigation
+import com.camping.camping.navigation.CampingScreens
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
@@ -45,7 +53,8 @@ fun OnBoardingScreen(navController: NavHostController) {
 
         Column(
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally) {
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             HorizontalPager(
                 count = items.size,
                 state = pageState
@@ -59,11 +68,14 @@ fun OnBoardingScreen(navController: NavHostController) {
                 }
             }
 
-            Button(modifier = Modifier
-                .padding(top = 40.dp)
-                .width(335.dp)
-                .height(44.dp),
-                onClick = {},
+            Button(
+                modifier = Modifier
+                    .padding(top = 40.dp)
+                    .width(335.dp)
+                    .height(44.dp),
+                onClick = {
+                    navController.navigate(CampingScreens.LoginScreen.name)
+                },
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF84CC16)),
 
@@ -71,7 +83,7 @@ fun OnBoardingScreen(navController: NavHostController) {
                 Text(text = "Log In", color = Color.White)
             }
 
-            Text(modifier = Modifier.padding(top = 16.dp), text = "Don't have an account? Register")
+            AnnotatedClickableText()
         }
     }
 }
@@ -158,4 +170,50 @@ fun OnBoardingItem(items: OnBoardingItems) {
             letterSpacing = 1.sp,
         )
     }
+}
+
+@Composable
+fun AnnotatedClickableText() {
+    val annotatedText = buildAnnotatedString {
+        //append your initial text
+        withStyle(
+            style = SpanStyle(
+                color = Color.Gray,
+            )
+        ) {
+            append("Don't have an account? ")
+
+        }
+
+        //Start of the pushing annotation which you want to color and make them clickable later
+        pushStringAnnotation(
+            tag = "Register",// provide tag which will then be provided when you click the text
+            annotation = "Register"
+        )
+        //add text with your different color/style
+        withStyle(
+            style = SpanStyle(
+                color = Color.Red,
+            )
+        ) {
+            append("Register")
+        }
+        // when pop is called it means the end of annotation with current tag
+        pop()
+    }
+
+    ClickableText(
+        modifier = Modifier.padding(top = 16.dp),
+        text = annotatedText,
+        onClick = { offset ->
+            annotatedText.getStringAnnotations(
+                tag = "Register",// tag which you used in the buildAnnotatedString
+                start = offset,
+                end = offset
+            )[0].let {
+                //do your stuff when it gets clicked
+                Log.d("tag", "clickeddddd")
+            }
+        }
+    )
 }
