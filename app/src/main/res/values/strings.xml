@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Camping</string>
+    <string name="onBoardingTitle1">Your Tasks</string>
+    <string name="onBoardingTitle2">Capture Your Memories</string>
+    <string name="onBoardingTitle3">Track Your Fitness</string>
+    <string name="onBoardingTitle4">There Is Much More</string>
+    <string name="onBoardingText1">I always reminds you about your planned activities. which is always my priority and your importance.</string>
+    <string name="onBoardingText2">We know that catching photos are necessary in your trip. that’s why we have built-in camera and gallery feature.</string>
+    <string name="onBoardingText3">Fitness is one of the main thing which is really important to your body and we track it in every second.</string>
+    <string name="onBoardingText4">We have bunch of other cool features. which is super helpful for your next camping trip. so what are you waiting for?</string>
+</resources>
