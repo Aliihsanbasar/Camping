@@ -4,5 +4,6 @@ enum class CampingScreens {
     SplashScreen,
     MainScreen,
     LoginScreen,
-    OnBoardingScreen
+    OnBoardingScreen,
+    SignUpScreen
 }

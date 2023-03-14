@@ -1,6 +1,5 @@
 package com.camping.camping.screens.authentication
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,18 +8,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.camping.camping.R
+import com.camping.camping.Header
 
-@Composable
-fun Header() {
-    Surface(modifier = Modifier.padding(start = 40.dp, top = 0.dp, bottom = 0.dp, end = 40.dp)) {
-        Image(painter = painterResource(R.drawable.main_logo), contentDescription = null)
-    }
-}
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
