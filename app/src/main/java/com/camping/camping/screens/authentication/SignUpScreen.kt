@@ -1,16 +1,11 @@
 package com.camping.camping.screens.authentication
 
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
@@ -18,26 +13,40 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.camping.camping.Header
+import com.camping.camping.navigation.CampingScreens
 
 @Composable
 fun SignUpScreen(navController: NavHostController) {
-
-}
-
-@Composable
-@Preview
-fun HandleScreen(){
     Surface(modifier = Modifier.fillMaxSize()) {
 
-        Column(modifier = Modifier.padding(start = 40.dp, end = 40.dp, top = 55.dp)) {
+        Column(
+            modifier = Modifier.padding(start = 40.dp, end = 40.dp, top = 25.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+
             Header()
             SignUpContent()
+            Button(
+                modifier = Modifier
+                    .padding(top = 24.dp)
+                    .fillMaxWidth()
+                    .height(44.dp),
+                onClick = {
+                          navController.navigate(CampingScreens.LoginScreen.name)
+                },
+                shape = RoundedCornerShape(12.dp),
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF84CC16)),
+
+                ) {
+                Text(text = "Sign Up", color = Color.White)
+            }
         }
     }
 }
 
 @Composable
-fun SignUpContent(){
+fun SignUpContent() {
 
     var nameText by remember {
         mutableStateOf(TextFieldValue(""))
@@ -57,7 +66,11 @@ fun SignUpContent(){
 
     Surface(modifier = Modifier.padding(top = 40.dp)) {
         Column {
-            Text(modifier = Modifier.padding(bottom = 8.dp) , text = "Name", color = Color(0XFF71717A))
+            Text(
+                modifier = Modifier.padding(bottom = 8.dp),
+                text = "Name",
+                color = Color(0XFF71717A)
+            )
 
             TextField(
                 modifier = Modifier
@@ -75,7 +88,11 @@ fun SignUpContent(){
                     )
             )
 
-            Text(modifier = Modifier.padding(bottom = 8.dp, top = 20.dp) , text = "Email", color = Color(0XFF71717A))
+            Text(
+                modifier = Modifier.padding(bottom = 8.dp, top = 20.dp),
+                text = "Email",
+                color = Color(0XFF71717A)
+            )
 
             TextField(
                 modifier = Modifier
@@ -93,7 +110,11 @@ fun SignUpContent(){
                     )
             )
 
-            Text(modifier = Modifier.padding(bottom = 8.dp, top = 20.dp) , text = "Phone", color = Color(0XFF71717A))
+            Text(
+                modifier = Modifier.padding(bottom = 8.dp, top = 20.dp),
+                text = "Phone",
+                color = Color(0XFF71717A)
+            )
 
             TextField(
                 modifier = Modifier
@@ -111,7 +132,11 @@ fun SignUpContent(){
                     )
             )
 
-            Text(modifier = Modifier.padding(bottom = 8.dp, top = 20.dp) , text = "Password", color = Color(0XFF71717A))
+            Text(
+                modifier = Modifier.padding(bottom = 8.dp, top = 20.dp),
+                text = "Password",
+                color = Color(0XFF71717A)
+            )
 
             TextField(
                 modifier = Modifier

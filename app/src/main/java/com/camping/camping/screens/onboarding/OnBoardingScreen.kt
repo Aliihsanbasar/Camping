@@ -1,6 +1,5 @@
 package com.camping.camping.screens.onboarding
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -70,7 +69,7 @@ fun OnBoardingScreen(navController: NavHostController) {
                 Text(text = "Log In", color = Color.White)
             }
 
-            AnnotatedClickableText()
+            AnnotatedClickableText(navController)
         }
     }
 }
@@ -156,7 +155,7 @@ fun OnBoardingItem(items: OnBoardingItems) {
 }
 
 @Composable
-fun AnnotatedClickableText() {
+fun AnnotatedClickableText(navController: NavHostController) {
     val annotatedText = buildAnnotatedString {
         //append your initial text
         withStyle(
@@ -195,7 +194,7 @@ fun AnnotatedClickableText() {
                 end = offset
             )[0].let {
                 //do your stuff when it gets clicked
-                Log.d("tag", "clickeddddd")
+                navController.navigate(CampingScreens.SignUpScreen.name)
             }
         }
     )
